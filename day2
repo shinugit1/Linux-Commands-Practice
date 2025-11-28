@@ -1,1 +1,49 @@
-SUID --> 
+USER   GROUP   OTHERS
+rwx    r-x     r-x
+First 3 = owner permissions
+Next 3 = group permissions
+Last 3 = others permissions
+How does a normal user change a password without root permission?
+Because of SUID.
+
+SUID (Set user ID)--> When a file with SUID is executed, it runs with the permissions of the file’s OWNER, not the user who runs it. 
+        Purpose: Allow normal users to run specific commands that require higher (owner/root) privileges.
+        rwsr-xr-x
+          ^
+          ‘s’ in the user (owner) execute position
+numeric code: 4xxx
+Set SUID: chmod 4755 file
+Remove SUID: chmod u-s file
+Instead of r w x, we see r w s.
+
+Meaning of that s:
+
+When ANYONE runs this file (normal user),
+the system temporarily gives them the owner’s identity.
+
+SGID (Set Group ID) --> For Files & Directories , File executes with the group’s permissions, not the user’s group.
+rwxr-sr-x
+      ^
+      ‘s’ in group execute position
+Numeric Code: 2xxx
+            All files created inside the directory automatically inherit the directory’s group.
+Purpose: Ensures team collaboration inside shared directories.
+Set SGID: chmod 2755 folder
+Remove SGID: chmod g-s folder
+Shared team folder:  /projects/devops/
+                      Every file created inside will belong to group devops.
+Sticky Bit —> For Directories Only, Inside a directory with Sticky Bit, users can delete only their own files, even if they have write permission.
+Purpose:     Protects files in shared directories.
+Symbol in permissions:
+drwxrwxrwt
+         ^
+         ‘t’ in others execute position
+Numeric Code:1xxx
+Set Sticky Bit:
+                  chmod 1755 folder
+Remove Sticky Bit:
+                  chmod o-t folder
+Real Example:
+            /tmp directory in Linux:
+drwxrwxrwt
+Everyone can write, but cannot delete each other's files.
