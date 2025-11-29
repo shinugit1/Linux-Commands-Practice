@@ -33,7 +33,7 @@ Remove SGID: chmod g-s folder
 Shared team folder:  /projects/devops/
                       Every file created inside will belong to group devops.
 Sticky Bit —> For Directories Only, Inside a directory with Sticky Bit, users can delete only their own files, even if they have write permission.
-Purpose:     Protects files in shared directories.
+Purpose: Protects files in shared directories.
 Symbol in permissions:
 drwxrwxrwt
          ^
@@ -47,3 +47,35 @@ Real Example:
             /tmp directory in Linux:
 drwxrwxrwt
 Everyone can write, but cannot delete each other's files.
+| Feature        | Works On            | Symbol           | Numeric  | Meaning                          |
+| -------------- | ------------------- | ---------------- | -------- | -------------------------------- |
+| **SUID**       | Files               | s in user slot   | **4xxx** | Run as file **owner**            |
+| **SGID**       | Files & Directories | s in group slot  | **2xxx** | Run as **group** / Inherit group |
+| **Sticky Bit** | Directories         | t in others slot | **1xxx** | Only owner can delete own files  |
+
+sudo (Superuser DO)
+🔹 A command that allows a normal user to run specific commands as root (or another user) temporarily.
+sudo command
+The system checks if you are listed in /etc/sudoers file.
+If yes → you can run that command as root without switching user. sudo requires your own password (not root password).
+eg. sudo chown username ownership.txt       >> is se hum owner ko temporary change kr paenge
+    sudo chown :groupname ownership_folder  >> is se hum group ko temporary change kr paenge
+    sudo chown -R :developers ownership_folder >>-R → recursive (applies to all files/subfolders).
+Change both user and group at once
+   sudo chown rahul:developers ownership.txt
+   Owner → rahul
+   Group → developers
+
+APT = Advanced Package Tool
+👉 APT ka use kiske liye hota hai?
+        Software install karne ke liye
+        Software update karne ke liye
+        Dependencies download karne ke liye
+        Packages remove karne ke liye
+
+Common APT commands
+        sudo apt update      # repositories refresh/update
+        sudo apt upgrade     # new versions install
+        sudo apt install nginx
+        sudo apt remove nginx
+        sudo apt search nginx
