@@ -1,0 +1,96 @@
+1. ps --> Process Status - Shows currently running processes with process IDs.
+  e.g. type -- > ps      (Shows processes of current terminal only)
+            -- > ps -ef  (Shows all running processes in the system)
+            -- >    ps -e  (-e = every process)
+             -- >   ps -f  (-f = full format or detailed information about processes)
+             -- >  ps -u  (-u = user format or Displays processes with user-focused details/
+                         ps -u username → Processes of Specific User)
+            -- > ps aux  (Another popular way to see all processes with details)
+                        It comes from BSD style options:
+                            a → show processes of all users
+                            u → show user details
+                            x → show processes without a terminal (TTY)
+  
+| Column | Meaning                 |
+| ------- | ---------------------- |
+| USER    | Owner of the process   |
+| PID     | Process ID             |
+| %CPU    | CPU usage              |
+| %MEM    | Memory usage           |
+| VSZ     | Virtual memory size    |
+| RSS     | Physical memory (RAM)  |
+| TTY     | Terminal               |
+| STAT    | Process state          |
+| START   | Start time             |
+| TIME    | CPU time               |
+| COMMAND | Command with arguments-CMD |
+
+   STAT column (very important)
+| Code | Meaning       |
+| ---- | ------------- |
+| R    | Running       |
+| S    | Sleeping      |
+| D    | Waiting (I/O) |
+| Z    | Zombie        |
+| T    | Stopped       |
+
+  6️⃣ ps aux vs ps -ef (Common Interview Question)
+| Feature           | ps aux      | ps -ef            |
+| ----------------- | ----------- | ----------------- |
+| Option style      | BSD         | UNIX              |
+| CPU/MEM info      | ✅ Yes       | ❌ No              |
+| Parent PID        | ❌ No        | ✅ Yes             |
+| Daemon visibility | ✅ Yes       | ✅ Yes             |
+| Most used for     | Performance | Process hierarchy |
+ 
+
+2. top --> 👉 Shows running processes in real-time (live). aka Linux ka Task Manager.
+  
+  What you see in top:
+CPU usage, Memory usage, Load average, Running processes (updated every few seconds)
+
+  Useful keys inside top
+| Key | Action         |
+| --- | -------------- |
+| `q` | Quit top       |
+| `k` | Kill a process |
+| `M` | Sort by memory |
+| `P` | Sort by CPU    |
+
+3. kill --> Stop a Process  - 👉 Stops (kills) a running process using PID.
+Basic command
+  kill PID
+  Force kill (strong)
+  kill -9 PID
+| Signal | Meaning               |
+| ------ | --------------------- |
+| `15`   | Polite stop (default) |
+| `9`    | Force stop            |
+
+4. nice -->👉 Decides how much CPU priority a process gets.
+ 
+  Priority rule (important)
+    Lower nice value = higher priority
+    Higher nice value = lower priority
+Range:  
+-20  (highest priority)
+  0  (default)
+ 19  (lowest priority)
+
+Run process with priority
+nice -n 10 command
+e.g.  nice -n 10 python script.py ➡️ Script will run slowly, CPU kam lega
+
+Process: An instance of a running program. 
+Thread: The smallest unit of a CPU's utilization, subordinate to a process. 
+PID: Process ID, a unique identifier for each process.
+
+
+
+  
+  
+
+
+
+
+  
