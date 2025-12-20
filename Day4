@@ -1,0 +1,72 @@
+Linux Package Managers – APT & YUM : Both automate software management
+Package managers help you install, update, remove, and manage software on Linux systems while automatically handling dependencies.
+e.g. nginx ko install krne ke liye required libraries are: libc openssl pcre but 👉 APT / YUM / DNF automatically ye sab install kar dete hain
+Aapko manually yaad rakhne ki zarurat nahi.
+
+1. apt-->(Advanced Package Tool)APT is the default package manager for Debian-based Linux distributions.
+    Package Format  --> .deb
+🔹 Used In
+Ubuntu    ,  Debian ,  Linux Mint  ,   Pop!_OS
+🔹 Command: sudo apt install nginx
+
+🔹 Common APT Commands
+| Task                       | Command                  |
+| -------------------------- | ------------------------ |
+| Update package list        | `sudo apt update`        |
+| Upgrade installed packages | `sudo apt upgrade`       |
+| Install package            | `sudo apt install nginx` |
+| Remove package             | `sudo apt remove nginx`  |
+| Remove + config files      | `sudo apt purge nginx`   |
+| Search package             | `apt search nginx`       |
+| Package info               | `apt show nginx`         |
+
+APT in DevOps: Used in Dockerfiles
+               CI/CD pipelines on Ubuntu runners
+               Cloud VM provisioning (EC2 Ubuntu)
+sudo apt update              # repo se latest list lao
+sudo apt install nginx       # install
+sudo apt upgrade             # upgrade packages
+sudo apt remove nginx        # remove
+sudo apt purge nginx         # remove + config
+apt search docker            # search
+apt show nginx               # details
+
+2. YUM --> (Yellowdog Updater Modified) YUM is the package manager for RPM-based Linux distributions (older systems).
+    Used In : CentOS 7, RHEL 7, Amazon Linux 1 & 2
+  Package Format   >  .rpm
+🔹 Common YUM Commands
+| Task            | Command                  |
+| --------------- | ------------------------ |
+| Install package | `sudo yum install nginx` |
+| Update packages | `sudo yum update`        |
+| Remove package  | `sudo yum remove nginx`  |
+| Search package  | `yum search nginx`       |
+| Package info    | `yum info nginx`         |
+| List installed  | `yum list installed`     |
+
+🔹 YUM in DevOps Widely used in > enterprise servers, Amazon Linux EC2 instance,s Legacy production environments.
+  sudo yum install -y docker
+⚠️ Note: YUM is now replaced by DNF(Dandified YUM) in newer systems (CentOS 8+, RHEL 8+)
+
+🔹An 'update' refreshes the package lists, while an 'upgrade' actually installs new versions of
+packages.
+🔹Dependencies: Additional packages required by a software package. 
+🔹Dependency resolution means automatically finding and installing required packages.
+
+🔹 Why updates are critical?
+Security patches
+Bug fixes
+Performance improvements
+Compatibility with new software
+
+📌 DevOps reality:
+Outdated packages = security vulnerability.
+
+7️⃣ Risks Involved in Upgrading Packages ⚠️
+❌ Potential Risks
+Service breaking changes 
+Config incompatibility 
+Dependency conflicts 
+Application downtime 
+>> Always test upgrades before production
+Kernel updates requiring reboot
