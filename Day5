@@ -1,0 +1,139 @@
+1️⃣ ping --> ping checks whether a remote host is reachable over the network using ICMP (Internet Control Message Protocol). Also check Latency (delay) in milliseconds and Packet loss
+🔹 Real-World Use
+Check internet connectivity
+Test server reachability
+Debug DNS vs IP issues      
+
+syntax: ping google.com
+              ping 8.8.8.8
+| Option | Meaning                  |
+| ------ | ------------------------ |
+| `-c`   | Number of packets        |
+| `-i`   | Interval between packets |
+| `-s`   | Packet size              |
+| `-t`   | TTL (time to live)       |
+
+2️⃣ ifconfig – Network Interface Configuration-ifconfig displays and configures network interfaces such as eth0, ens33, wlan0.
+  Now replaced by ip addr.
+
+🔹 Sample Output
+Info IP address
+MAC address 
+Netmask 
+RX/TX packets 
+Interface status (UP/DOWN)
+
+🔹 Common Commands
+ifconfig eth0
+sudo ifconfig eth0 down
+sudo ifconfig eth0 up
+
+🔹 DevOps Usage
+Debug EC2 network issues
+Check container network
+Verify interface IP
+
+3️⃣ netstat – Network Statistics-netstat shows network connections, open ports, routing tables, and listening services.
+A command-line utility that prints network connections, routing tables, and other network related information.   
+>> Now replaced by ss (Socket Statistics)
+🔹 Common Usage
+netstat -tulnp
+
+| Option | Meaning    |
+| ------ | ---------- |
+| `-t`   | TCP        |
+| `-u`   | UDP        |
+| `-l`   | Listening  |
+| `-n`   | Numeric    |
+| `-p`   | Process ID |
+
+🔹 Typical Use Cases
+
+Check which service is using a port
+Debug “port already in use”
+Security audits
+
+🔹ping checks reachability
+🔹ifconfig shows IP & interfaces
+🔹netstat shows open ports
+
+Port = gate/door jahan se application network traffic sunti hai.
+| Service | Port |
+| ------- | ---- |
+| HTTP    | 80   |
+| HTTPS   | 443  |
+| SSH     | 22   |
+| MySQL   | 3306 |
+
+Linux systems generate huge text data (logs, configs, CSVs).These three commands help us search, analyze, and modify text efficiently.
+1️⃣ grep--> grep is a command-line tool used to search for a specific pattern or word inside text files or command output.
+Why do we need grep?
+  To find errors in logs
+  To filter command output
+  To locate configuration entries
+  Saves time instead of manual searching
+
+Syntax
+grep "pattern" filename   (will show the line containing the word pattern)
+
+🔹 Useful Options
+| Option | Purpose            |
+| ------ | ------------------ |
+| `-i`   | Ignore case        |
+| `-n`   | Show line number   |
+| `-r`   | Search recursively |     👉 Ek directory ke andar jitni bhi files & sub-directories hain, un sab me search karna.
+| `-v`   | Exclude pattern    |     👉 Jo pattern diya hai usko chhod ke baaki sab dikhao
+
+2️⃣awk --> awk is a powerful text-processing tool used to work with columns (fields) and records in a file.
+          awk is used for column-based data extraction and processing.
+
+Why do we need awk?
+To extract specific columns
+To analyze structured text (tables, CSVs)
+To generate reports
+To process command outputs
+
+🔧 Syntax
+awk '{action}' filename
+
+🧪 Example
+File: employees.txt
+    John 5000 HR
+    Alice 7000 IT
+    Bob 4000 Finance
+
+awk '{print $1}' employees.txt
+0/p >John
+    Alice
+    Bob
+
+awk '$2 > 5000 {print $1, $2}' employees.txt
+o/p: Alice 7000
+
+3️⃣ sed --> sed (Stream Editor) is used to edit, replace, or delete text in a stream or file, usually without opening the file.
+sed is used to modify text automatically.
+
+❓Why do we need sed?
+To automate text changes
+To update config files
+To perform find-and-replace
+To modify files in scripts & pipelines
+
+🔧 Syntax
+sed 's/old/new/' filename      (only for preview data is changed)
+sed -i 's/old/new/' filename    (permanent data change)
+sed -i.bak 's/old/new/' filename  (Backup ke saath change)
+File: config.env
+APP_ENV=dev
+PORT=8080
+
+Command
+sed 's/dev/prod/' config.env
+
+Output
+APP_ENV=prod
+PORT=8080
+
+grep → find
+awk  → extract 
+sed  → modify
