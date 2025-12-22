@@ -2,7 +2,8 @@
 
 
 pwd #shows present working directory
-ls -l --> #lists all the files with their details
+ls -l --> #lists all the files with their details , -i stands for long listing format
+ls -a --> #lists all the hidden files, -a > all
 -rwxr-xr-- 1 john devops 1234 Jan 10 script.sh
 
 mkdir myfolder --> #make a mydir directory
